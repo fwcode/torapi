@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  torapi:
+    container_name: TorAPI
+    image: lifailon/torapi:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=${PORT}
+      - PROXY_ADDRESS=${PROXY_ADDRESS}
+      - PROXY_PORT=${PROXY_PORT}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - torapi:/rotapi
+    restart: unless-stopped
+volumes:
+  torapi:
